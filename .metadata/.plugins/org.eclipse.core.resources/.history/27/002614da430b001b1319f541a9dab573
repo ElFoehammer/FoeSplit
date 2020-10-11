@@ -1,0 +1,21 @@
+package splitter;
+
+import java.sql.Time;
+
+public class Segment {
+	
+	private static String name;
+	private static Time latestRun;
+	private static Time goldRun;
+	private static Time PBRun;
+
+
+	public Segment(String nickName, Time latest, Time gold, Time PB) {
+
+		name = nickName;
+		latestRun = latest;
+		goldRun = gold;
+		PBRun = PB;
+
+	}
+}

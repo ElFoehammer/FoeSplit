@@ -1,0 +1,47 @@
+package splitter;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
+
+public class chronos implements ActionListener {
+	
+	int milis;
+	int sec;
+	int min;
+	int hrs;
+	Timer chronometer;
+	
+	public chronos(){
+		chronometer = new Timer(100000, this);
+		chronometer start;
+	}
+	
+	public static void main(String[] args) {
+		new chronos();
+		while(true) {
+			
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		milis++;
+		if (milis == 100) {
+			milis = 0;
+			sec++;
+			if(sec == 60) {
+				sec = 0;
+				min++;
+				if(min == 60) {
+					min = 0;
+					hrs++;
+				}
+			}
+		}
+	}
+
+}

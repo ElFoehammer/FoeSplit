@@ -1,0 +1,14 @@
+package splitter;
+
+public class Segment {
+	
+	private static String name;
+	private static Time GroupCounter = 0;
+
+
+	public Segment(String nickName) {
+
+		name = nickName;
+
+	}
+}

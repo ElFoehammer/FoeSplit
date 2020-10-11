@@ -1,0 +1,155 @@
+package splitter;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.SpringLayout;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.SwingConstants;
+import java.awt.Panel;
+import java.awt.Label;
+import java.awt.Button;
+import javax.swing.JTable;
+
+public class Timer {
+	
+	private static JButton btnSettings;
+
+	private JFrame frame;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Timer window = new Timer();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Timer() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(0, 0, 0));
+		frame.setBounds(100, 100, 300, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		SpringLayout springLayout = new SpringLayout();
+		frame.getContentPane().setLayout(springLayout);
+		
+		JPanel pnlButtons = new JPanel();
+		pnlButtons.setBackground(new Color(65, 105, 225));
+		springLayout.putConstraint(SpringLayout.NORTH, pnlButtons, -110, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, pnlButtons, 0, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, pnlButtons, 0, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, pnlButtons, 0, SpringLayout.EAST, frame.getContentPane());
+		frame.getContentPane().add(pnlButtons);
+		SpringLayout sl_pnlButtons = new SpringLayout();
+		pnlButtons.setLayout(sl_pnlButtons);
+		
+		JButton btnSplit = new JButton("Start");
+		sl_pnlButtons.putConstraint(SpringLayout.NORTH, btnSplit, 5, SpringLayout.NORTH, pnlButtons);
+		sl_pnlButtons.putConstraint(SpringLayout.WEST, btnSplit, 10, SpringLayout.WEST, pnlButtons);
+		sl_pnlButtons.putConstraint(SpringLayout.SOUTH, btnSplit, -35, SpringLayout.SOUTH, pnlButtons);
+		sl_pnlButtons.putConstraint(SpringLayout.EAST, btnSplit, -10, SpringLayout.EAST, pnlButtons);
+		pnlButtons.add(btnSplit);
+		
+		JButton btnStop = new JButton("stop");
+		sl_pnlButtons.putConstraint(SpringLayout.NORTH, btnStop, 0, SpringLayout.SOUTH, btnSplit);
+		sl_pnlButtons.putConstraint(SpringLayout.WEST, btnStop, 0, SpringLayout.WEST, btnSplit);
+		sl_pnlButtons.putConstraint(SpringLayout.SOUTH, btnStop, -2, SpringLayout.SOUTH, pnlButtons);
+		sl_pnlButtons.putConstraint(SpringLayout.EAST, btnStop, 70, SpringLayout.WEST, btnSplit);
+		pnlButtons.add(btnStop);
+		
+		JButton btnPause = new JButton("pause");
+		sl_pnlButtons.putConstraint(SpringLayout.NORTH, btnPause, 0, SpringLayout.SOUTH, btnSplit);
+		sl_pnlButtons.putConstraint(SpringLayout.WEST, btnPause, 6, SpringLayout.EAST, btnStop);
+		sl_pnlButtons.putConstraint(SpringLayout.SOUTH, btnPause, -2, SpringLayout.SOUTH, pnlButtons);
+		sl_pnlButtons.putConstraint(SpringLayout.EAST, btnPause, 0, SpringLayout.EAST, btnSplit);
+		pnlButtons.add(btnPause);
+		
+		JPanel pnlTitle = new JPanel();
+		pnlTitle.setBackground(new Color(65, 105, 225));
+		springLayout.putConstraint(SpringLayout.NORTH, pnlTitle, 0, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, pnlTitle, 0, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, pnlTitle, 50, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, pnlTitle, 0, SpringLayout.EAST, frame.getContentPane());
+		frame.getContentPane().add(pnlTitle);
+		SpringLayout sl_pnlTitle = new SpringLayout();
+		pnlTitle.setLayout(sl_pnlTitle);
+		
+		JLabel lblGameTitle = new JLabel("sm64");
+		lblGameTitle.setForeground(new Color(255, 255, 255));
+		lblGameTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGameTitle.setFont(new Font("Trebuchet MS", Font.PLAIN, 24));
+		sl_pnlTitle.putConstraint(SpringLayout.NORTH, lblGameTitle, 10, SpringLayout.NORTH, pnlTitle);
+		sl_pnlTitle.putConstraint(SpringLayout.WEST, lblGameTitle, 50, SpringLayout.WEST, pnlTitle);
+		sl_pnlTitle.putConstraint(SpringLayout.EAST, lblGameTitle, -50, SpringLayout.EAST, pnlTitle);
+		pnlTitle.add(lblGameTitle);
+		
+		btnSettings = new JButton("");
+		sl_pnlTitle.putConstraint(SpringLayout.NORTH, btnSettings, 0, SpringLayout.NORTH, pnlTitle);
+		sl_pnlTitle.putConstraint(SpringLayout.WEST, btnSettings, -40, SpringLayout.EAST, pnlTitle);
+		sl_pnlTitle.putConstraint(SpringLayout.SOUTH, btnSettings, 40, SpringLayout.NORTH, pnlTitle);
+		sl_pnlTitle.putConstraint(SpringLayout.EAST, btnSettings, 0, SpringLayout.EAST, pnlTitle);
+		pnlTitle.add(btnSettings);
+		  try {
+			    Image img = ImageIO.read(getClass().getResource("images/cog.png"));
+			    btnSettings.setIcon(new ImageIcon(img));
+			    
+			    JLabel lblRunCount = new JLabel("0");
+			    sl_pnlTitle.putConstraint(SpringLayout.NORTH, lblRunCount, 0, SpringLayout.NORTH, pnlTitle);
+			    sl_pnlTitle.putConstraint(SpringLayout.WEST, lblRunCount, 2, SpringLayout.WEST, pnlTitle);
+			    lblRunCount.setForeground(new Color(255, 255, 255));
+			    pnlTitle.add(lblRunCount);
+			    
+			    JPanel pnlSegments = new JPanel();
+			    pnlSegments.setBackground(new Color(100, 149, 237));
+			    springLayout.putConstraint(SpringLayout.NORTH, pnlSegments, 0, SpringLayout.SOUTH, pnlTitle);
+			    springLayout.putConstraint(SpringLayout.WEST, pnlSegments, 0, SpringLayout.WEST, frame.getContentPane());
+			    springLayout.putConstraint(SpringLayout.SOUTH, pnlSegments, 0, SpringLayout.NORTH, pnlButtons);
+			    springLayout.putConstraint(SpringLayout.EAST, pnlSegments, 0, SpringLayout.EAST, frame.getContentPane());
+			    frame.getContentPane().add(pnlSegments);
+			    SpringLayout sl_pnlSegments = new SpringLayout();
+			    pnlSegments.setLayout(sl_pnlSegments);
+			    
+			    table = new JTable();
+			    sl_pnlSegments.putConstraint(SpringLayout.NORTH, table, 10, SpringLayout.NORTH, pnlSegments);
+			    sl_pnlSegments.putConstraint(SpringLayout.WEST, table, 10, SpringLayout.WEST, pnlSegments);
+			    pnlSegments.add(table);
+			    
+			    JLabel lblTimer = new JLabel("00:00:00.00");
+			    lblTimer.setFont(new Font("News Gothic MT", Font.BOLD, 36));
+			    lblTimer.setForeground(new Color(50, 205, 50));
+			    sl_pnlSegments.putConstraint(SpringLayout.SOUTH, lblTimer, -10, SpringLayout.SOUTH, pnlSegments);
+			    sl_pnlSegments.putConstraint(SpringLayout.EAST, lblTimer, -10, SpringLayout.EAST, pnlSegments);
+			    pnlSegments.add(lblTimer);
+			  } catch (Exception ex) {
+			    System.out.println(ex);
+			  }
+	}
+}

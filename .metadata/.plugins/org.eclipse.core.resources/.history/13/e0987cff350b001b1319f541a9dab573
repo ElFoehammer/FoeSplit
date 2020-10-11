@@ -1,0 +1,77 @@
+package splitter;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.SpringLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class Timer {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Timer window = new Timer();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Timer() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 300, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		SpringLayout springLayout = new SpringLayout();
+		frame.getContentPane().setLayout(springLayout);
+		
+		JPanel pnlButtons = new JPanel();
+		springLayout.putConstraint(SpringLayout.NORTH, pnlButtons, -110, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, pnlButtons, 0, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, pnlButtons, 0, SpringLayout.SOUTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, pnlButtons, 0, SpringLayout.EAST, frame.getContentPane());
+		frame.getContentPane().add(pnlButtons);
+		SpringLayout sl_pnlButtons = new SpringLayout();
+		pnlButtons.setLayout(sl_pnlButtons);
+		
+		JButton btnSplit = new JButton("Start");
+		sl_pnlButtons.putConstraint(SpringLayout.NORTH, btnSplit, 5, SpringLayout.NORTH, pnlButtons);
+		sl_pnlButtons.putConstraint(SpringLayout.WEST, btnSplit, 10, SpringLayout.WEST, pnlButtons);
+		sl_pnlButtons.putConstraint(SpringLayout.SOUTH, btnSplit, -35, SpringLayout.SOUTH, pnlButtons);
+		sl_pnlButtons.putConstraint(SpringLayout.EAST, btnSplit, -10, SpringLayout.EAST, pnlButtons);
+		pnlButtons.add(btnSplit);
+		
+		JButton btnStop = new JButton("stop");
+		sl_pnlButtons.putConstraint(SpringLayout.NORTH, btnStop, 2, SpringLayout.SOUTH, btnSplit);
+		sl_pnlButtons.putConstraint(SpringLayout.WEST, btnStop, 0, SpringLayout.WEST, btnSplit);
+		sl_pnlButtons.putConstraint(SpringLayout.SOUTH, btnStop, 0, SpringLayout.SOUTH, pnlButtons);
+		sl_pnlButtons.putConstraint(SpringLayout.EAST, btnStop, 70, SpringLayout.WEST, btnSplit);
+		pnlButtons.add(btnStop);
+		
+		JButton btnPause = new JButton("pause");
+		sl_pnlButtons.putConstraint(SpringLayout.NORTH, btnPause, 2, SpringLayout.SOUTH, btnSplit);
+		sl_pnlButtons.putConstraint(SpringLayout.WEST, btnPause, 6, SpringLayout.EAST, btnStop);
+		sl_pnlButtons.putConstraint(SpringLayout.SOUTH, btnPause, 0, SpringLayout.SOUTH, pnlButtons);
+		sl_pnlButtons.putConstraint(SpringLayout.EAST, btnPause, 0, SpringLayout.EAST, btnSplit);
+		pnlButtons.add(btnPause);
+	}
+}
